@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.TextView
+import butterknife.BindView
+import butterknife.ButterKnife
+import butterknife.OnClick
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -11,20 +14,22 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var myDependency : SomeDependency
 
+    @BindView(R.id.txt_dosomething)
+    lateinit var txt : TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         MyApplication.myComponent.inject(this)
-        setClick()
+        ButterKnife.bind(this)
     }
 
-    private fun setClick() {
-        var btn : Button = findViewById(R.id.btn_test) as Button
-        btn.setOnClickListener { doSomething() }
+    @OnClick(R.id.btn_test)
+    fun click(btn: Button) {
+         doSomething()
     }
 
     private fun doSomething() {
-        var txt : TextView = findViewById(R.id.txt_dosomething) as TextView
         txt.text = "Do Something"
         myDependency.doSomething()
     }
