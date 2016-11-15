@@ -1,6 +1,9 @@
 package mauricio.com.br.kotlinwithdagger2
 
 import android.app.Application
+import mauricio.com.br.kotlinwithdagger2.di.AndroidModule
+import mauricio.com.br.kotlinwithdagger2.di.DaggerMyComponent
+import mauricio.com.br.kotlinwithdagger2.di.MyComponent
 
 
 class MyApplication : Application() {

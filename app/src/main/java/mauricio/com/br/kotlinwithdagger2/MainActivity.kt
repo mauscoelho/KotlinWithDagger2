@@ -2,36 +2,32 @@ package mauricio.com.br.kotlinwithdagger2
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.RecyclerView
 import android.widget.Button
 import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
+import kotlinx.android.synthetic.main.activity_main.*
+import mauricio.com.br.kotlinwithdagger2.R.id.recycler
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
+    var myAdapter = MyAdapter()
+
     @Inject
     lateinit var myDependency : SomeDependency
-
-    @BindView(R.id.txt_dosomething)
-    lateinit var txt : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         MyApplication.myComponent.inject(this)
-        ButterKnife.bind(this)
-    }
-
-    @OnClick(R.id.btn_test)
-    fun click(btn: Button) {
-         doSomething()
+        recycler.adapter = myAdapter
+        btn_test.setOnClickListener { doSomething() }
     }
 
     private fun doSomething() {
-        txt.text = "Do Something"
         myDependency.doSomething()
+        val listStrings = listOf<String>("E ai", "blz", "testando", "som")
+        listStrings.map { myAdapter.addObject(it) }
     }
 
 

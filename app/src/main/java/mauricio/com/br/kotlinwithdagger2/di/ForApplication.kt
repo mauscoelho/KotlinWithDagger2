@@ -1,4 +1,4 @@
-package mauricio.com.br.kotlinwithdagger2
+package mauricio.com.br.kotlinwithdagger2.di
 
 import javax.inject.Qualifier
 
