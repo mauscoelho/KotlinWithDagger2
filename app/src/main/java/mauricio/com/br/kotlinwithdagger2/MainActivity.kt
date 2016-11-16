@@ -2,11 +2,10 @@ package mauricio.com.br.kotlinwithdagger2
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
-import android.widget.Button
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
-import mauricio.com.br.kotlinwithdagger2.R.id.recycler
+import mauricio.com.br.kotlinwithdagger2.network.GithubService
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +13,10 @@ class MainActivity : AppCompatActivity() {
     var myAdapter = MyAdapter()
 
     @Inject
-    lateinit var myDependency : SomeDependency
+    lateinit var myDependency: SomeDependency
+
+    @Inject
+    lateinit var githubService: GithubService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +28,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun doSomething() {
         myDependency.doSomething()
-        val listStrings = listOf<String>("E ai", "blz", "testando", "som")
-        listStrings.map { myAdapter.addObject(it) }
+        githubService.getGithubUser("mauriciocoelho")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    data ->
+                    myAdapter.addObject(data.login)
+                },{ e ->
+                    print(message = "error:${e.message}")
+                })
     }
 
 
