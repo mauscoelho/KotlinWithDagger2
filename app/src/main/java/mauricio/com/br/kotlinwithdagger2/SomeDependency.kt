@@ -7,4 +7,6 @@ interface SomeDependency {
 
     fun doSomething()
 
+    fun getSomething() : String
+
 }
