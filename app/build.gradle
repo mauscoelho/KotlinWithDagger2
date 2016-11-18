@@ -48,6 +48,13 @@ dependencies {
     compile "com.squareup.retrofit2:converter-gson:2.0.0"
 
     compile 'com.android.support:recyclerview-v7:25.0.0'
+
+    testCompile 'junit:junit:4.12'
+    testCompile "com.nhaarman:mockito-kotlin:0.12.0"
+    testCompile 'org.jetbrains.spek:spek-api:1.0.89'
+    testCompile 'org.jetbrains.spek:spek-junit-platform-engine:1.0.89'
+    testCompile 'org.junit.platform:junit-platform-runner:1.0.0-M2'
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 }
 
 kapt {
@@ -57,3 +64,5 @@ kapt {
 repositories {
     mavenCentral()
 }
+
+
