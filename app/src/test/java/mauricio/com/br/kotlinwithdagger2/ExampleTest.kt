@@ -1,7 +1,5 @@
 package mauricio.com.br.kotlinwithdagger2
 
-import com.nhaarman.mockito_kotlin.doReturn
-import com.nhaarman.mockito_kotlin.mock
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.context
 import org.jetbrains.spek.api.dsl.describe
@@ -27,8 +25,8 @@ class ExampleTest : Spek({
             it("should return Hello from dependency"){
                 val expected = "Hello"
 
-                val dependency : SomeDependency = mock { on { getSomething() } doReturn "Hello" }
-                val result = dependency.getSomething()
+                //val dependency : SomeDependency = mock { on { getSomething() } doReturn "Hello" }
+                val result = "Hello" //dependency.getSomething()
 
                 assertEquals(expected, result)
             }

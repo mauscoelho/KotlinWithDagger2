@@ -42,9 +42,6 @@ dependencies {
 
     compile 'io.reactivex:rxjava:1.0.14'
     compile 'io.reactivex:rxandroid:1.1.0'
-    compile "com.squareup.retrofit2:retrofit:2.0.0"
-    compile "com.squareup.retrofit2:adapter-rxjava:2.0.0"
-    compile "com.squareup.retrofit2:converter-gson:2.0.0"
 
     compile 'com.android.support:recyclerview-v7:25.0.0'
 
@@ -54,6 +51,7 @@ dependencies {
     testCompile 'org.jetbrains.spek:spek-junit-platform-engine:1.0.89'
     testCompile 'org.junit.platform:junit-platform-runner:1.0.0-M2'
     testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    compile project(path: ':domain')
 }
 
 kapt {

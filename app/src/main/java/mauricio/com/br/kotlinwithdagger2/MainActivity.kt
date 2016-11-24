@@ -3,7 +3,7 @@ package mauricio.com.br.kotlinwithdagger2
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import mauricio.com.br.kotlinwithdagger2.network.GithubService
+import mauricio.com.br.kotlinwithdagger2.domain.boundary.GithubService
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import javax.inject.Inject
@@ -11,9 +11,6 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     var myAdapter = MyAdapter()
-
-    @Inject
-    lateinit var myDependency: SomeDependency
 
     @Inject
     lateinit var githubService: GithubService
@@ -27,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun doSomething() {
-        myDependency.doSomething()
         githubService.getGithubUser("mauriciocoelho")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
